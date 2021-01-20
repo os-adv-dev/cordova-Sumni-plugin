@@ -1,0 +1,8 @@
+repositories{
+    jcenter()
+}
+
+dependencies {
+    compile 'com.sunmi:DS_Lib:1.0.16'//1.0.11
+    compile 'com.alibaba:fastjson:1.1.70.android'//1.1.67.android
+}

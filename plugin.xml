@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="cordova-sumni-sdk" version="1.0.0">
+
+    <name>Sumni SDK</name>
+    <description> </description>
+    <keywords>Sumni,Android</keywords>
+    <engines>
+        <engine name="cordova" version=">=7.0.0" />
+    </engines>
+
+    <platform name="android">
+        <config-file parent="/*" target="res/xml/config.xml">
+            <feature name="Sumni">
+                <param name="android-package" value="com.outsystems.sumnisdk" />
+            </feature>
+        </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="application">
+          <receiver
+              android:name="com.outsystems.sumnisdk.receiver.MyBroadCastReceiver">
+              <intent-filter>
+                <action android:name="com.sunmi.hcservice"/>
+                <action android:name="com.sunmi.hcservice.status"/>
+            </intent-filter>
+          </receiver>
+        </config-file>
+        
+        <config-file parent="/*" target="AndroidManifest.xml"></config-file>
+
+        <framework src="src/sumniGradle.gradle"  custom="true" type="gradleReference" />
+        <source-file src="src/SumniPlugin.java" target-dir="src/com/outsystems/sumnisdk" />
+        <source-file src="src/MyBroadCastReceiver.java" target-dir="src/com/outsystems/sumnisdk/receiver" />
+        <source-file src="src/utils/Data.java" target-dir="src/com/outsystems/sumnisdk/utils" />
+        <source-file src="src/utils/DataModel.java" target-dir="src/com/outsystems/sumnisdk/utils" />
+        <source-file src="src/utils/UPacketFactory.java" target-dir="src/com/outsystems/sumnisdk/utils" />
+    </platform>
+</plugin>
