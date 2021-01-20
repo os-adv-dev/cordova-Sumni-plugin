@@ -9,10 +9,15 @@
         <engine name="cordova" version=">=7.0.0" />
     </engines>
 
+    <js-module src="www/sumnisdk.js" name="Sumni">
+            <clobbers target="Sumni" />
+        </js-module>
+
     <platform name="android">
         <config-file parent="/*" target="res/xml/config.xml">
             <feature name="Sumni">
                 <param name="android-package" value="com.outsystems.sumnisdk" />
+                <param name="onload" value="true"/>
             </feature>
         </config-file>
 
