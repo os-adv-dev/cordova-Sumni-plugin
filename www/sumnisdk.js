@@ -1,7 +1,7 @@
 var exec = require('cordova/exec');
 
-exports.init = function(success, error) {
-    exec(success, error, "SumniPlugin", "init", []);
+exports.initsdk = function(success, error) {
+    exec(success, error, "SumniPlugin", "initsdk", []);
 };
 exports.test = function(message, success, error) {
     exec(success, error, "SumniPlugin", "test", [message]);

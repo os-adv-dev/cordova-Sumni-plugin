@@ -40,7 +40,7 @@ public class SumniPlugin extends CordovaPlugin {
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext){
         PluginResult pr;
         switch (action) {
-            case "init":
+            case "initsdk":
             //------------------------------Init-------------------------------------------//
                 initSdk();
                 mCallback = callbackContext;
