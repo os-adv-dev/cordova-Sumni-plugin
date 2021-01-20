@@ -16,7 +16,7 @@
     <platform name="android">
         <config-file parent="/*" target="res/xml/config.xml">
             <feature name="SumniPlugin">
-                <param name="android-package" value="com.outsystems.sumnisdk" />
+                <param name="android-package" value="com.outsystems.sumnisdk.SumniPlugin" />
                 <param name="onload" value="true"/>
             </feature>
         </config-file>
