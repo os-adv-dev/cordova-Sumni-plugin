@@ -12,8 +12,8 @@ exports.sendFiles = function(packageName, message, paths, success, error) {
 exports.sendFile = function(packageName, message, path, success, error) {
     exec(success, error, "SumniPlugin", "sendFile", [packageName, message, path]);
 };
-exports.sendCMD = function(packname, option,message,taskId,model, success, error) {
-    exec(success, error, "SumniPlugin", "sendCMD", [packname, option,message,taskId,model]);
+exports.sendCMD = function(packname, option,message,fileId,model, success, error) {
+    exec(success, error, "SumniPlugin", "sendCMD", [packname, option,message,fileId,model]);
 };
 exports.sendQuery = function(message, packageName, option,type,isReport,fileId, success, error) {
     exec(success, error, "SumniPlugin", "sendQuery", [message, packageName, option,type,isReport,fileId]);
@@ -24,8 +24,8 @@ exports.checkFileExists = function(fileId,packageName, success, error) {
 exports.deleteFileExists = function(taskId, success, error) {
     exec(success, error, "SumniPlugin", "deleteFileExists", [taskId]);
 };
-exports.sendData = function(message, package, option,model,type,taskId, success, error) {
-    exec(success, error, "SumniPlugin", "sendData", [message, package, option,model,type,taskId]);
+exports.sendData = function(message, package, option,model,type,fileId, success, error) {
+    exec(success, error, "SumniPlugin", "sendData", [message, package, option,model,type,fileId]);
 };
 exports.getDSDPackageName = function(success, error) {
     exec(success, error, "SumniPlugin", "getDSDPackageName", []);

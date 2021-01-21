@@ -115,8 +115,8 @@ public class SumniPlugin extends CordovaPlugin {
                             return false;
                         }
                         String cmdMessage = args.optString(2);
-                        long cmdTaskID = args.optLong(3);
-                        sendCMD(cmdPackName,cmdMessage,cmdTaskID,callbackContext);
+                        long cmdCFileID = args.optLong(3);
+                        sendCMD(cmdPackName,cmdMessage,cmdCFileID,callbackContext);
                         break;
                     case "CMDPACK":
                         if(args.length()<5){
@@ -331,26 +331,26 @@ public class SumniPlugin extends CordovaPlugin {
                         }
                         dataPacket = UPacketFactory.buildPack(dataPackage, customtype, customModel, dataString, dataCallback);
                         break;
-                    case "CUSTOM_W_TASKID":
+                    case "CUSTOM_W_FILEID":
                         if(args.length()<6){
                             sendErrorMessage(7,"This action needs at least 6 arguments to be used!",callbackContext);
                             return false;
                         }
-                        DataModel taskModel = getDataModel(args.optString(3));
-                        if(taskModel == null){
+                        DataModel cfileModel = getDataModel(args.optString(3));
+                        if(cfileModel == null){
                             sendErrorMessage(10,"Model could not be identified!",callbackContext);
                             return false;
                         }
-                        DSData.DataType tasktype = getDataType(args.optString(4));
-                        if(tasktype == null){
+                        DSData.DataType cfiletype = getDataType(args.optString(4));
+                        if(cfiletype == null){
                             sendErrorMessage(9,"DataType could not be identified!",callbackContext);
                             return false;
                         }
-                        long dataTaskId = args.optLong(5);
-                        dataPacket = UPacketFactory.buildPack(dataPackage, dataTaskId, tasktype, taskModel, dataString, dataCallback);
+                        long datafileId = args.optLong(5);
+                        dataPacket = UPacketFactory.buildPack(dataPackage, datafileId, cfiletype, cfileModel, dataString, dataCallback);
                         break;
                     default :
-                        sendErrorMessage(4,"Data Type could not be identified / does not exist!",callbackContext);
+                        sendErrorMessage(4,"Data Option could not be identified / does not exist!",callbackContext);
                         return false;
                 }
                 //The first parameter is the package name of data receiving sub-application, you can refer the demo here,
