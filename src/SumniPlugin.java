@@ -370,6 +370,19 @@ public class SumniPlugin extends CordovaPlugin {
                 pr.setKeepCallback(false);
                 callbackContext.sendPluginResult(pr);
                 return true;
+            case "createJson":
+            //------------------------------Create Json-------------------------------------------//
+                if(args.length()<2){
+                    sendErrorMessage(7,"This action needs 2 arguments to be used!",callbackContext);
+                    return false;
+                }
+                String jsonModel = args.optString(0);
+                String jsonString = args.optString(1);
+                String json = createJson(DataModel dataModel, String dataStr)
+                pr = new PluginResult(PluginResult.Status.OK,json);
+                pr.setKeepCallback(false);
+                callbackContext.sendPluginResult(pr);
+                return true;
                 
             default:
                 return false;

@@ -36,3 +36,6 @@ exports.getDSDPackName = function(success, error) {
 exports.checkConnection = function(success, error) {
     exec(success, error, "SumniPlugin", "checkConnection", []);
 };
+exports.createJson = function(message, model,success, error) {
+    exec(success, error, "SumniPlugin", "createJson", [message, model]);
+};
