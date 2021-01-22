@@ -378,7 +378,7 @@ public class SumniPlugin extends CordovaPlugin {
                 }
                 String jsonModel = args.optString(0);
                 String jsonString = args.optString(1);
-                String json = createJson(DataModel dataModel, String dataStr)
+                String json = createJson(getDataModel(jsonModel), jsonString)
                 pr = new PluginResult(PluginResult.Status.OK,json);
                 pr.setKeepCallback(false);
                 callbackContext.sendPluginResult(pr);
