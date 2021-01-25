@@ -8,7 +8,7 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.widget.Toast;
 
-import $packageName.R;
+import com.outsystems.expertsmobiledev.SumniSDKSample.R;
 
 public class OtherActivity extends AppCompatActivity implements SurfaceHolder.Callback {
 
