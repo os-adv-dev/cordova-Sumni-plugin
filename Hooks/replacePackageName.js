@@ -4,7 +4,7 @@ var appId = "";
 
 
 function replacer(match, p1,p2, p3, offset, string){
-    if(p3.includes("packageName")){
+    if(!p3.includes("packageName")){
         return [p1,appId,p3].join("");
     }else{
         return [p1,p2,p3].join("");
