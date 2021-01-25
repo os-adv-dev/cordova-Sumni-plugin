@@ -33,7 +33,7 @@ module.exports = function (context) {
     if (fs.existsSync(activityFilePath)) {
         var activity = fs.readFileSync(activityFilePath, "utf8");
 
-        var regex = /(package[\s|\S]*import )($packageName)(\.[\s|\S]*)/gm;
+        var regex = /(package[\s|\S]*import )(\$packageName)(\.[\s|\S]*)/gm;
         activity = activity.replace(regex,replacer);
 
         
