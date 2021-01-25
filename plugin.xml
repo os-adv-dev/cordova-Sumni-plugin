@@ -37,6 +37,8 @@
         
         <config-file parent="/*" target="AndroidManifest.xml"></config-file>
 
+        <hook type="after_plugin_install" src="hooks/replacePackageName.js" />
+
         <framework src="src/sumniGradle.gradle"  custom="true" type="gradleReference" />
         <source-file src="src/SumniPlugin.java" target-dir="src/com/outsystems/sumnisdk" />
         <source-file src="src/MyBroadCastReceiver.java" target-dir="src/com/outsystems/sumnisdk/receiver" />
