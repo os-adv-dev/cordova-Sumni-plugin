@@ -30,6 +30,9 @@
             </intent-filter>
           </receiver>
         </config-file>
+        <config-file target="AndroidManifest.xml" parent="application">
+          <activity android:name=".OtherActivity">
+        </config-file>
         
         <config-file parent="/*" target="AndroidManifest.xml"></config-file>
 
@@ -39,5 +42,7 @@
         <source-file src="src/utils/Data.java" target-dir="src/com/outsystems/sumnisdk/utils" />
         <source-file src="src/utils/DataModel.java" target-dir="src/com/outsystems/sumnisdk/utils" />
         <source-file src="src/utils/UPacketFactory.java" target-dir="src/com/outsystems/sumnisdk/utils" />
+        <source-file src="src/OtherActivity.java" target-dir="src/com/outsystems/sumnisdk" />
+        <source-file src="src/res/activity_other.xml" target-dir="res/layout" />
     </platform>
 </plugin>
