@@ -1,12 +1,18 @@
 package com.outsystems.sumnisdk;
 
 import org.apache.cordova.CallbackContext;
+import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.CordovaPlugin;
+import org.apache.cordova.CordovaWebView;
 import org.apache.cordova.PluginResult;
 
+import android.hardware.display.DisplayManager;
 import android.util.Log;
+import android.view.Display;
 
+import com.outsystems.sumnisdk.present.TextDisplay;
 import com.outsystems.sumnisdk.utils.DataModel;
+import com.outsystems.sumnisdk.utils.ScreenManager;
 import com.outsystems.sumnisdk.utils.UPacketFactory;
 
 import org.json.JSONArray;
@@ -35,11 +41,42 @@ public class SumniPlugin extends CordovaPlugin {
     private final String TAG = this.getServiceName();
     private DSKernel mDSKernel = null;
     private CallbackContext mCallback;
-    
+    private DisplayManager displayManager = null;
+    private Display[] presentationDisplays = null;
+    ScreenManager screenManager = ScreenManager.getInstance();
+
+    @Override
+    public void initialize(CordovaInterface cordova, CordovaWebView webView) {
+    super.initialize(cordova, webView);
+        screenManager.init(cordova.getActivity());
+
+        /*displayManager =  (DisplayManager)cordova.getActivity().getSystemService(Context.DISPLAY_SERVICE);
+        if (displayManager!= null){
+            presentationDisplays = displayManager.getDisplays(DisplayManager.DISPLAY_CATEGORY_PRESENTATION);
+            if (presentationDisplays.length > 0){               
+                secondaryDisplay = new PresentationDisplay(cordova.getActivity(), presentationDisplays[0]);
+                secondaryDisplay.show();               
+            }
+        }*/
+    }
 
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext){
         PluginResult pr;
         switch (action) {
+            case "presentText":
+            Display[] displays = screenManager.getDisplays();
+            Log.e(TAG, "屏幕数量" + displays.length);
+            for (int i = 0; i < displays.length; i++) {
+                Log.e(TAG, "屏幕" + displays[i]);
+            }
+            Display display = screenManager.getPresentationDisplays();
+            if (display != null ) {//&& !isVertical
+                TextDisplay textDisplay = new TextDisplay(cordova.getActivity(),display,new JSONObject());
+                textDisplay.show();
+                textDisplay.update("2", 1);
+                textDisplay.setSelect(1);
+
+            }
             case "initsdk":
             //------------------------------Init-------------------------------------------//
                 initSdk();

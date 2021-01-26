@@ -4,11 +4,7 @@ var appId = "";
 
 
 function replacer(match, p1,p2, p3, offset, string){
-    if(!p3.includes("packageName")){
-        return [p1,appId,p3].join("");
-    }else{
-        return [p1,p2,p3].join("");
-    }
+    return [p1,appId,p3].join("");
 }
 module.exports = function (context) {
     
@@ -29,18 +25,18 @@ module.exports = function (context) {
     id = id.replace(regexId,"/")
 
     var projectRoot = context.opts.cordova.project ? context.opts.cordova.project.root : context.opts.projectRoot;
-    var activityFilePath = path.join(projectRoot,"platforms","android","app","src","main","java","com","outsystems","sumnisdk","OtherActivity.java");
+    var activityFilePath = path.join(projectRoot,"platforms","android","app","src","main","java","com","outsystems","sumnisdk","present","TextDisplay.java");
     if (fs.existsSync(activityFilePath)) {
         var activity = fs.readFileSync(activityFilePath, "utf8");
 
-        var regex = /(package[\s|\S]*import )(\$packageName)(\.[\s|\S]*)/gm;
+        var regex = /([\s|\S]*)(com\.outsystems\.SumniSDKSample)([\s|\S]*)/gm;
         activity = activity.replace(regex,replacer);
 
         
         fs.writeFileSync(activityFilePath, activity);
-        console.log("Finished changing OtherActivity!");
+        console.log("Finished changing the packageNames!");
     }else{
-        console.log("Error could not find OtherActivity!");
+        console.log("Error could not find packageNames!");
     }
     deferral.resolve();
 
