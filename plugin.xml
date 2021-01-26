@@ -64,9 +64,9 @@
         <source-file src="src/res/drawables/present_bg_text3.png" target-dir="res/drawable" />
         <source-file src="src/res/drawables/present_bg_text4.png" target-dir="res/drawable" />
         <source-file src="src/res/drawables/present_success.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/present_pay_mode_bg.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/present_pay_mode_check.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/present_pay_mode_normal.png" target-dir="res/drawable" />
+        <source-file src="src/res/drawables/present_pay_mode_bg.xml" target-dir="res/drawable" />
+        <source-file src="src/res/drawables/present_pay_mode_check.xml" target-dir="res/drawable" />
+        <source-file src="src/res/drawables/present_pay_mode_normal.xml" target-dir="res/drawable" />
 
 
         <source-file src="src/res/drawables/Frame/frame001.png" target-dir="res/drawable" />
