@@ -39,3 +39,7 @@ exports.checkConnection = function(success, error) {
 exports.createJson = function(message, model,success, error) {
     exec(success, error, "SumniPlugin", "createJson", [message, model]);
 };
+
+exports.presentText = function(success, error) {
+    exec(success, error, "SumniPlugin", "presentText", []);
+};
