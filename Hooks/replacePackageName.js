@@ -4,7 +4,7 @@ var appId = "";
 
 
 function replacer(match, p1,p2, p3, offset, string){
-    return [p1,appId,p3].join("");
+    return [p1,appId,".R",p3].join("");
 }
 module.exports = function (context) {
     
@@ -29,7 +29,7 @@ module.exports = function (context) {
     if (fs.existsSync(activityFilePath)) {
         var activity = fs.readFileSync(activityFilePath, "utf8");
 
-        var regex = /([\s|\S]*)(com\.outsystems\.SumniSDKSample)([\s|\S]*)/gm;
+        var regex = /([\s|\S]*)(com\.outsystems\.SumniSDKSample.R)([\s|\S]*)/gm;
         activity = activity.replace(regex,replacer);
 
         
