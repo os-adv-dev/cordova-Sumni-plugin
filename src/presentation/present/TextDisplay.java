@@ -19,7 +19,7 @@ import android.widget.TextView;
 import com.outsystems.sumnisdk.BasePresentation;
 import com.outsystems.sumnisdk.utils.ScreenManager;
 
-import com.outsystems.SumniSDKSample.R;
+import com.outsystems.sample.R;
 
 import org.json.JSONObject;
 

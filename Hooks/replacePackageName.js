@@ -28,8 +28,7 @@ module.exports = function (context) {
     var activityFilePath = path.join(projectRoot,"platforms","android","app","src","main","java","com","outsystems","sumnisdk","present","TextDisplay.java");
     if (fs.existsSync(activityFilePath)) {
         var activity = fs.readFileSync(activityFilePath, "utf8");
-
-        var regex = /([\s|\S]*)(com\.outsystems\.SumniSDKSample.R)([\s|\S]*)/gm;
+        var regex = /([\s|\S]*)(com\.outsystems\.sample.R)([\s|\S]*)/gm;
         activity = activity.replace(regex,replacer);
 
         
