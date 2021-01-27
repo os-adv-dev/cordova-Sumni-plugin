@@ -135,7 +135,7 @@ public class TextDisplay extends BasePresentation {
 
                 setSelect(0);
                 tvTitle.setText(jsonObject.getString("title"));//strings[0].replace(":", "")
-                tv.setText(zoomString(jsonObject.getString("textView1")));//zoomString(unit + strings[1]));
+                tv.setText((jsonObject.getString("textView1"));//zoomString(unit + strings[1]));
                 tv.setTextSize(ScreenManager.getInstance().isMinScreen()?136:68);
                 break;
             case 1:
@@ -148,7 +148,7 @@ public class TextDisplay extends BasePresentation {
                 tvTitle.setText(jsonObject.getString("title"));//strings[0].replace(":", ""));
                 tvPaySuccess.setText(jsonObject.getString("textView2"));
 
-                tv.setText(zoomString(jsonObject.getString("textView1")));//zoomString(unit + strings[1]));
+                tv.setText((jsonObject.getString("textView1"));//zoomString(unit + strings[1]));
                 tv.setTextSize(ScreenManager.getInstance().isMinScreen()?136:68);
                 playAnim();
 
@@ -165,7 +165,7 @@ public class TextDisplay extends BasePresentation {
                 break;
             case 3:
                 tvTitle.setText(jsonObject.getString("title"));
-                tv.setText(zoomString(jsonObject.getString("textView1")));//zoomString(tip));
+                tv.setText(jsonObject.getString("textView1"));//zoomString(tip));
 
                 presentProgress.setVisibility(View.VISIBLE);
                 tvPaySuccess.setVisibility(View.VISIBLE);
@@ -179,7 +179,7 @@ public class TextDisplay extends BasePresentation {
                 break;
             case 4:
                 tvTitle.setText(jsonObject.getString("title"));
-                tv.setText(zoomString(jsonObject.getString("textView1")));//zoomString(tip));
+                tv.setText(jsonObject.getString("textView1"));//zoomString(tip));
 
                 llPresentInfo.setVisibility(View.VISIBLE);
                 presentProgress.setVisibility(View.GONE);
