@@ -25,7 +25,7 @@ public abstract class BasePresentation extends Presentation implements View.OnCl
     public View.OnClickListener onClickListener;
     public BasePresentationHelper helper = BasePresentationHelper.getInstance();
 
-    public BasePresentation(Context outerContext, Display display, JSONObject dataToPresent) {
+    public BasePresentation(Context outerContext, Display display) {
         super(outerContext, display);
         index = helper.add(this);
     }
