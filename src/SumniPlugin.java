@@ -71,7 +71,7 @@ public class SumniPlugin extends CordovaPlugin {
                     return false;
                 }
                 try {
-                    JSONObject jsonObj = args.getJSONObject(0);
+                    JSONObject jsonObj = new JSONObject(args.getString(0));
                     int state = args.getInt(1);
                     if(textDisplay == null){
                         Display[] displays = screenManager.getDisplays();
@@ -84,10 +84,10 @@ public class SumniPlugin extends CordovaPlugin {
                             textDisplay = new TextDisplay(cordova.getActivity(), display);
                         }
                     }
-                    textDisplay.update(jsonObj, state);
                     textDisplay.show();
+                    textDisplay.update(jsonObj, state);
                 }catch(JSONException e){
-                    sendErrorMessage(11,"JSONException:"+e.getLocalizedMessage(),mCallback);
+                    sendErrorMessage(11,"JSONException:"+e.getLocalizedMessage(),callbackContext);
                     return false;
                 }
                 return true;
@@ -109,7 +109,7 @@ public class SumniPlugin extends CordovaPlugin {
                         videoDisplay.onSelect(true);
                     }
                 }catch(JSONException e){
-                    sendErrorMessage(11,"JSONException:"+e.getLocalizedMessage(),mCallback);
+                    sendErrorMessage(11,"JSONException:"+e.getLocalizedMessage(),callbackContext);
                     return false;
                 }
                 return true;
@@ -141,8 +141,13 @@ public class SumniPlugin extends CordovaPlugin {
                 }
                 String filesPackageName = args.optString(0);
                 String filesMessage = args.optString(1);
-                JSONArray filesPaths = args.optJSONArray(2);
-                sendFiles(filesPackageName,filesMessage,filesPaths,callbackContext);
+                try {
+                    JSONArray filesPaths = new JSONArray(args.getString(2));
+                    sendFiles(filesPackageName, filesMessage, filesPaths, callbackContext);
+                }catch (JSONException e){
+                    sendErrorMessage(11,"JSONException:"+e.getLocalizedMessage(),callbackContext);
+                    return false;
+                }
                 return true;
             case "sendFile":
             //------------------------------Send File-------------------------------------------//
@@ -434,12 +439,6 @@ public class SumniPlugin extends CordovaPlugin {
             case "getDSDPackageName":
             //------------------------------Get Package Name-------------------------------------------//
                 pr = new PluginResult(PluginResult.Status.OK,DSKernel.getDSDPackageName());
-                pr.setKeepCallback(false);
-                callbackContext.sendPluginResult(pr);
-                return true;
-            case "getDSDPackName":
-            //------------------------------Get Pack Name-------------------------------------------//
-                pr = new PluginResult(PluginResult.Status.OK,SF.SUNMI_DSD_PACKNAME);
                 pr.setKeepCallback(false);
                 callbackContext.sendPluginResult(pr);
                 return true;

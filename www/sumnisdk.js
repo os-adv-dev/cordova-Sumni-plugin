@@ -30,9 +30,6 @@ exports.sendData = function(message, package, option,model,type,fileId, success,
 exports.getDSDPackageName = function(success, error) {
     exec(success, error, "SumniPlugin", "getDSDPackageName", []);
 };
-exports.getDSDPackName = function(success, error) {
-    exec(success, error, "SumniPlugin", "getDSDPackName", []);
-};
 exports.checkConnection = function(success, error) {
     exec(success, error, "SumniPlugin", "checkConnection", []);
 };
