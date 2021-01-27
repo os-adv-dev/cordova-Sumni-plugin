@@ -43,40 +43,53 @@ public class SumniPlugin extends CordovaPlugin {
     private CallbackContext mCallback;
     private DisplayManager displayManager = null;
     private Display[] presentationDisplays = null;
-    ScreenManager screenManager = ScreenManager.getInstance();
+    private ScreenManager screenManager = ScreenManager.getInstance();
+    private TextDisplay textDisplay;
 
     @Override
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
     super.initialize(cordova, webView);
         screenManager.init(cordova.getActivity());
-
-        /*displayManager =  (DisplayManager)cordova.getActivity().getSystemService(Context.DISPLAY_SERVICE);
-        if (displayManager!= null){
-            presentationDisplays = displayManager.getDisplays(DisplayManager.DISPLAY_CATEGORY_PRESENTATION);
-            if (presentationDisplays.length > 0){               
-                secondaryDisplay = new PresentationDisplay(cordova.getActivity(), presentationDisplays[0]);
-                secondaryDisplay.show();               
-            }
-        }*/
+        Display[] displays = screenManager.getDisplays();
+        Log.e(TAG, "屏幕数量" + displays.length);
+        for (int i = 0; i < displays.length; i++) {
+            Log.e(TAG, "屏幕" + displays[i]);
+        }
+        Display display = screenManager.getPresentationDisplays();
+        if (display != null) {//&& !isVertical
+            textDisplay = new TextDisplay(cordova.getActivity(), display);
+        }
     }
 
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext){
         PluginResult pr;
         switch (action) {
             case "presentText":
-            Display[] displays = screenManager.getDisplays();
-            Log.e(TAG, "屏幕数量" + displays.length);
-            for (int i = 0; i < displays.length; i++) {
-                Log.e(TAG, "屏幕" + displays[i]);
-            }
-            Display display = screenManager.getPresentationDisplays();
-            if (display != null ) {//&& !isVertical
-                TextDisplay textDisplay = new TextDisplay(cordova.getActivity(),display,new JSONObject());
-                textDisplay.show();
-                textDisplay.update("2", 1);
-                textDisplay.setSelect(1);
-
-            }
+                if(args.length()<2){
+                    sendErrorMessage(7,"This action needs 2 argument to be used!",callbackContext);
+                    return false;
+                }
+                try {
+                    JSONObject jsonObj = args.getJSONObject(0);
+                    int state = args.getInt(1);
+                    if(textDisplay == null){
+                        Display[] displays = screenManager.getDisplays();
+                        Log.e(TAG, "屏幕数量" + displays.length);
+                        for (int i = 0; i < displays.length; i++) {
+                            Log.e(TAG, "屏幕" + displays[i]);
+                        }
+                        Display display = screenManager.getPresentationDisplays();
+                        if (display != null) {//&& !isVertical
+                            textDisplay = new TextDisplay(cordova.getActivity(), display);
+                        }
+                    }
+                    textDisplay.update(jsonObj, state);
+                    textDisplay.show();
+                }catch(JSONException e){
+                    sendErrorMessage(11,"JSONException:"+e.getLocalizedMessage(),mCallback);
+                    return false;
+                }
+                return true;
             case "initsdk":
             //------------------------------Init-------------------------------------------//
                 initSdk();

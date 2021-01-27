@@ -21,6 +21,7 @@ import com.outsystems.sumnisdk.utils.ScreenManager;
 
 import com.outsystems.sample.R;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -49,8 +50,8 @@ public class TextDisplay extends BasePresentation {
     private TextView presentFailThree;
     public int state;
 
-    public TextDisplay(Context outerContext, Display display, JSONObject obj) {
-        super(outerContext, display,obj);
+    public TextDisplay(Context outerContext, Display display) {
+        super(outerContext, display);
     }
 
     @Override
@@ -63,22 +64,22 @@ public class TextDisplay extends BasePresentation {
             setContentView(R.layout.vice_text_layout);
         }
 
-        root = (LinearLayout) findViewById(R.id.root);
-        tvTitle = (TextView) findViewById(R.id.tv_title);
-        tv = (TextView) findViewById(R.id.tv);
-        llPresentChoosePayMode = (LinearLayout) findViewById(R.id.ll_present_choose_pay_mode);
-        tvPaySuccess = (TextView) findViewById(R.id.tv_pay_success);
-        paymodeOne = (TextView) findViewById(R.id.paymode_one);
-        paymodeTwo = (TextView) findViewById(R.id.paymode_two);
-        paymodeThree = (TextView) findViewById(R.id.paymode_three);
-        ivTitle = (ImageView) findViewById(R.id.iv_title);
-        llPresentInfo = (LinearLayout) findViewById(R.id.ll_present_info);
+        root = findViewById(R.id.root);
+        tvTitle = findViewById(R.id.tv_title);
+        tv = findViewById(R.id.tv);
+        llPresentChoosePayMode = findViewById(R.id.ll_present_choose_pay_mode);
+        tvPaySuccess = findViewById(R.id.tv_pay_success);
+        paymodeOne = findViewById(R.id.paymode_one);
+        paymodeTwo = findViewById(R.id.paymode_two);
+        paymodeThree = findViewById(R.id.paymode_three);
+        ivTitle = findViewById(R.id.iv_title);
+        llPresentInfo = findViewById(R.id.ll_present_info);
 
 
-        llPresentPayFail = (LinearLayout) findViewById(R.id.ll_present_pay_fail);
-        presentFailOne = (TextView) findViewById(R.id.present_fail_one);
-        presentFailTwo = (TextView) findViewById(R.id.present_fail_two);
-        presentFailThree = (TextView) findViewById(R.id.present_fail_three);
+        llPresentPayFail = findViewById(R.id.ll_present_pay_fail);
+        presentFailOne = findViewById(R.id.present_fail_one);
+        presentFailTwo = findViewById(R.id.present_fail_two);
+        presentFailThree = findViewById(R.id.present_fail_three);
 
 
         paymodeOne.setOnClickListener(this);
@@ -90,7 +91,7 @@ public class TextDisplay extends BasePresentation {
         presentFailThree.setOnClickListener(this);
 
 
-        presentProgress = (ProgressBar) findViewById(R.id.present_progress);
+        presentProgress = findViewById(R.id.present_progress);
 
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -107,20 +108,23 @@ public class TextDisplay extends BasePresentation {
     }
 
 
-    public void update(String tip) {
-        update(tip, 0);
-    }
-
-
-    public void update(String tip, final int state) {
+    public void update(JSONObject jsonObject, final int state) throws JSONException {
         this.state = state;
-        String unit = "$";//ResourcesUtils.getString(R.string.units_money_units);
-        String[] strings = tip.split(unit);
-        if(unit.equals("$")){
-            strings = tip.split("\\$");
-        }
         llPresentPayFail.setVisibility(View.GONE);
         presentProgress.setVisibility(View.GONE);
+
+        if (jsonObject.has("textViewPayment1") && jsonObject.has("textViewPayment2") && jsonObject.has("textViewPayment3")){
+            paymodeOne.setText(jsonObject.getString("textViewPayment1"));
+            paymodeTwo.setText(jsonObject.getString("textViewPayment2"));
+            paymodeThree.setText(jsonObject.getString("textViewPayment3"));
+        }
+        if (jsonObject.has("textViewFail1") && jsonObject.has("textViewFail2") && jsonObject.has("textViewFail3")){
+            presentFailOne.setText(jsonObject.getString("textViewFail1"));
+            presentFailOne.setText(jsonObject.getString("textViewFail2"));
+            presentFailThree.setText(jsonObject.getString("textViewFail3"));
+        }
+
+        //iv_title
         switch (state) {
             case 0:
                 llPresentInfo.setVisibility(View.VISIBLE);
@@ -130,8 +134,8 @@ public class TextDisplay extends BasePresentation {
                 ivTitle.setImageResource(R.drawable.present_pay_iv1);
 
                 setSelect(0);
-                tvTitle.setText(strings[0].replace(":", ""));
-                tv.setText(zoomString(unit + strings[1]));
+                tvTitle.setText(jsonObject.getString("title"));//strings[0].replace(":", "")
+                tv.setText(zoomString(jsonObject.getString("textView1")));//zoomString(unit + strings[1]));
                 tv.setTextSize(ScreenManager.getInstance().isMinScreen()?136:68);
                 break;
             case 1:
@@ -141,10 +145,10 @@ public class TextDisplay extends BasePresentation {
                 ivTitle.setImageResource(R.drawable.present_pay_iv2);
 
 
-                tvTitle.setText(strings[0].replace(":", ""));
-                tvPaySuccess.setText("pay_thank_you");
+                tvTitle.setText(jsonObject.getString("title"));//strings[0].replace(":", ""));
+                tvPaySuccess.setText(jsonObject.getString("textView2"));
 
-                tv.setText(zoomString(unit + strings[1]));
+                tv.setText(zoomString(jsonObject.getString("textView1")));//zoomString(unit + strings[1]));
                 tv.setTextSize(ScreenManager.getInstance().isMinScreen()?136:68);
                 playAnim();
 
@@ -154,14 +158,14 @@ public class TextDisplay extends BasePresentation {
                 llPresentInfo.setVisibility(View.GONE);
                 root.setBackgroundResource(R.drawable.present_bg_text3);
                 ivTitle.setImageResource(R.drawable.present_pay_iv3);
-                tvTitle.setText("tips_bye_again");
+                tvTitle.setText(jsonObject.getString("title"));
 
-                tv.setText(tip);
+                tv.setText(jsonObject.getString("textView1"));//tip);
                 tv.setTextSize(ScreenManager.getInstance().isMinScreen()?90:45);
                 break;
             case 3:
-                tvTitle.setText("pay_paying");
-                tv.setText(zoomString(tip));
+                tvTitle.setText(jsonObject.getString("title"));
+                tv.setText(zoomString(jsonObject.getString("textView1")));//zoomString(tip));
 
                 presentProgress.setVisibility(View.VISIBLE);
                 tvPaySuccess.setVisibility(View.VISIBLE);
@@ -171,11 +175,11 @@ public class TextDisplay extends BasePresentation {
                 root.setBackgroundResource(R.drawable.present_bg_text1);
                 ivTitle.setImageResource(R.drawable.present_pay_iv1);
 
-                tvPaySuccess.setText("pay_paying_wait");
+                tvPaySuccess.setText(jsonObject.getString("textView1"));
                 break;
             case 4:
-                tvTitle.setText("pay_fail");
-                tv.setText(zoomString(tip));
+                tvTitle.setText(jsonObject.getString("title"));
+                tv.setText(zoomString(jsonObject.getString("textView1")));//zoomString(tip));
 
                 llPresentInfo.setVisibility(View.VISIBLE);
                 presentProgress.setVisibility(View.GONE);

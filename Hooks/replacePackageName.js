@@ -4,6 +4,8 @@ var appId = "";
 
 
 function replacer(match, p1,p2, p3, offset, string){
+    console.log(appId);
+    console.log("Teste");
     return [p1,appId,".R",p3].join("");
 }
 module.exports = function (context) {
