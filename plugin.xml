@@ -37,7 +37,7 @@
         
         <config-file parent="/*" target="AndroidManifest.xml"></config-file>
 
-        <hook type="before_build" src="hooks/replacePackageName.js" />
+        <hook type="before_build" src="Hooks/replacePackageName.js" />
 
         <framework src="src/sumniGradle.gradle"  custom="true" type="gradleReference" />
         <source-file src="src/SumniPlugin.java" target-dir="src/com/outsystems/sumnisdk" />
