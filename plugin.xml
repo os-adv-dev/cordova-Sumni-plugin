@@ -51,10 +51,21 @@
         <source-file src="src/presentation/BasePresentation.java" target-dir="src/com/outsystems/sumnisdk" />
         <source-file src="src/presentation/BasePresentationHelper.java" target-dir="src/com/outsystems/sumnisdk" />
         <source-file src="src/presentation/present/TextDisplay.java" target-dir="src/com/outsystems/sumnisdk/present" />
+        <source-file src="src/presentation/present/VideoDisplay.java" target-dir="src/com/outsystems/sumnisdk/present" />
+
+        <source-file src="src/presentation/player/IMDisplay.java" target-dir="src/com/outsystems/sumnisdk/player" />
+        <source-file src="src/presentation/player/IMPlayer.java" target-dir="src/com/outsystems/sumnisdk/player" />
+        <source-file src="src/presentation/player/IMPlayListener.java" target-dir="src/com/outsystems/sumnisdk/player" />
+        <source-file src="src/presentation/player/MinimalDisplay.java" target-dir="src/com/outsystems/sumnisdk/player" />
+        <source-file src="src/presentation/player/MPlayer.java" target-dir="src/com/outsystems/sumnisdk/player" />
+        <source-file src="src/presentation/player/MPlayerException.java" target-dir="src/com/outsystems/sumnisdk/player" />
 
 
         <source-file src="src/res/layout/vice_text_layout.xml" target-dir="res/layout" />
         <source-file src="src/res/layout/vice_text_min_layout.xml" target-dir="res/layout" />
+        <source-file src="src/res/layout/vice_video_layout.xml" target-dir="res/layout" />
+        
+        
         <source-file src="src/res/drawables/present_pay_iv1.png" target-dir="res/drawable" />
         <source-file src="src/res/drawables/present_pay_iv2.xml" target-dir="res/drawable" />
         <source-file src="src/res/drawables/present_pay_iv3.png" target-dir="res/drawable" />

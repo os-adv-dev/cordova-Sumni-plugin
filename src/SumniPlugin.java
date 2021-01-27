@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.Display;
 
 import com.outsystems.sumnisdk.present.TextDisplay;
+import com.outsystems.sumnisdk.present.VideoDisplay;
 import com.outsystems.sumnisdk.utils.DataModel;
 import com.outsystems.sumnisdk.utils.ScreenManager;
 import com.outsystems.sumnisdk.utils.UPacketFactory;
@@ -85,6 +86,28 @@ public class SumniPlugin extends CordovaPlugin {
                     }
                     textDisplay.update(jsonObj, state);
                     textDisplay.show();
+                }catch(JSONException e){
+                    sendErrorMessage(11,"JSONException:"+e.getLocalizedMessage(),mCallback);
+                    return false;
+                }
+                return true;
+            case "presentVideo":
+                if(args.length()<1){
+                    sendErrorMessage(7,"This action needs 1 argument to be used!",callbackContext);
+                    return false;
+                }
+                try {
+                    String path = args.getString(0);
+                    Display[] displays = screenManager.getDisplays();
+                    Log.e(TAG, "屏幕数量" + displays.length);
+                    for (int i = 0; i < displays.length; i++) {
+                        Log.e(TAG, "屏幕" + displays[i]);
+                    }
+                    Display display = screenManager.getPresentationDisplays();
+                    if (display != null) {//&& !isVertical
+                        VideoDisplay videoDisplay = new VideoDisplay(cordova.getActivity(), display,path);
+                        videoDisplay.onSelect(true);
+                    }
                 }catch(JSONException e){
                     sendErrorMessage(11,"JSONException:"+e.getLocalizedMessage(),mCallback);
                     return false;

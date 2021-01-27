@@ -43,3 +43,6 @@ exports.createJson = function(message, model,success, error) {
 exports.presentText = function(jsonObj,state,success, error) {
     exec(success, error, "SumniPlugin", "presentText", [jsonObj,state]);
 };
+exports.presentVideo = function(path,success, error) {
+    exec(success, error, "SumniPlugin", "presentVideo", [path]);
+};
