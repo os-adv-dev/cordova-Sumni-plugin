@@ -135,7 +135,7 @@ public class TextDisplay extends BasePresentation {
 
                 setSelect(0);
                 tvTitle.setText(jsonObject.getString("title"));//strings[0].replace(":", "")
-                tv.setText((jsonObject.getString("textView1"));//zoomString(unit + strings[1]));
+                tv.setText(jsonObject.getString("textView1"));//zoomString(unit + strings[1]));
                 tv.setTextSize(ScreenManager.getInstance().isMinScreen()?136:68);
                 break;
             case 1:
@@ -148,7 +148,7 @@ public class TextDisplay extends BasePresentation {
                 tvTitle.setText(jsonObject.getString("title"));//strings[0].replace(":", ""));
                 tvPaySuccess.setText(jsonObject.getString("textView2"));
 
-                tv.setText((jsonObject.getString("textView1"));//zoomString(unit + strings[1]));
+                tv.setText(jsonObject.getString("textView1"));//zoomString(unit + strings[1]));
                 tv.setTextSize(ScreenManager.getInstance().isMinScreen()?136:68);
                 playAnim();
 
