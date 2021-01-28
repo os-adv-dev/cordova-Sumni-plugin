@@ -70,7 +70,7 @@ public class ScreenManager {
                 return displays[i];
             }
         }
-        return null;
+        return displays[1];
 
     }
 }
