@@ -129,7 +129,7 @@ public class SumniPlugin extends CordovaPlugin {
                     }
                     Display display = screenManager.getPresentationDisplays();
                     if (display != null) {//&& !isVertical
-                        webviewDisplay = new WebviewDisplay(cordova.getActivity(), display,url);
+                        webviewDisplay = new WebviewDisplay(cordova.getActivity(), display,url,callbackContext);
                         webviewDisplay.show();
                     }
                 }catch(JSONException e){
