@@ -12,6 +12,7 @@ import android.view.Display;
 
 import com.outsystems.sumnisdk.present.TextDisplay;
 import com.outsystems.sumnisdk.present.VideoDisplay;
+import com.outsystems.sumnisdk.present.WebviewDisplay;
 import com.outsystems.sumnisdk.utils.DataModel;
 import com.outsystems.sumnisdk.utils.ScreenManager;
 import com.outsystems.sumnisdk.utils.UPacketFactory;
