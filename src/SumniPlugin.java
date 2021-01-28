@@ -15,6 +15,7 @@ import com.outsystems.sumnisdk.present.VideoDisplay;
 import com.outsystems.sumnisdk.present.WebviewDisplay;
 import com.outsystems.sumnisdk.utils.DataModel;
 import com.outsystems.sumnisdk.utils.ScreenManager;
+import com.outsystems.sumnisdk.utils.SharePreferenceUtil;
 import com.outsystems.sumnisdk.utils.UPacketFactory;
 
 import org.json.JSONArray;
@@ -51,7 +52,7 @@ public class SumniPlugin extends CordovaPlugin {
 
     @Override
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
-    super.initialize(cordova, webView);
+        super.initialize(cordova, webView);
         screenManager.init(cordova.getActivity());
         Display[] displays = screenManager.getDisplays();
         Log.e(TAG, "屏幕数量" + displays.length);
@@ -143,8 +144,25 @@ public class SumniPlugin extends CordovaPlugin {
                     return false;
                 }
                 return true;
+            case "getWebviewData":
+                String jsonFromWebview = SharePreferenceUtil.getParam(cordova.getActivity(),"webviewData");
+                pr = new PluginResult(PluginResult.Status.OK,jsonFromWebview);
+                pr.setKeepCallback(false);
+                callbackContext.sendPluginResult(pr);
+                return true;
+            case "setWebviewData":
+                if(args.length()<1){
+                    sendErrorMessage(7,"This action needs 1 argument to be used!",callbackContext);
+                    return false;
+                }
+                String jsonToWebview = args.optString(0);
+                SharePreferenceUtil.setParam(cordova.getActivity(),"webviewData",jsonToWebview);
+                pr = new PluginResult(PluginResult.Status.OK);
+                pr.setKeepCallback(false);
+                callbackContext.sendPluginResult(pr);
+                return true;
             case "initsdk":
-            //------------------------------Init-------------------------------------------//
+                //------------------------------Init-------------------------------------------//
                 initSdk();
                 mCallback = callbackContext;
                 pr = new PluginResult(PluginResult.Status.OK);
@@ -152,7 +170,7 @@ public class SumniPlugin extends CordovaPlugin {
                 callbackContext.sendPluginResult(pr);
                 return true;
             case "test":
-            //------------------------------Test-------------------------------------------//
+                //------------------------------Test-------------------------------------------//
                 if(args.length()<1){
                     sendErrorMessage(7,"This action needs 1 argument to be used!",callbackContext);
                     return false;
@@ -164,7 +182,7 @@ public class SumniPlugin extends CordovaPlugin {
                 callbackContext.sendPluginResult(pr);
                 return true;
             case "sendFiles":
-            //------------------------------Send Files-------------------------------------------//
+                //------------------------------Send Files-------------------------------------------//
                 if(args.length()<3){
                     sendErrorMessage(7,"This action needs 3 argument to be used!",callbackContext);
                     return false;
@@ -180,7 +198,7 @@ public class SumniPlugin extends CordovaPlugin {
                 }
                 return true;
             case "sendFile":
-            //------------------------------Send File-------------------------------------------//
+                //------------------------------Send File-------------------------------------------//
                 if(args.length()<3){
                     sendErrorMessage(7,"This action needs 3 argument to be used!",callbackContext);
                     return false;
@@ -191,7 +209,7 @@ public class SumniPlugin extends CordovaPlugin {
                 sendFile(filePackage,fileMessage,filePath,callbackContext);
                 return true;
             case "sendCMD":
-            //------------------------------Send Command-------------------------------------------//
+                //------------------------------Send Command-------------------------------------------//
                 if(args.length()<2){
                     sendErrorMessage(7,"This action needs at least 2 argument to be used!",callbackContext);
                     return false;
@@ -298,7 +316,7 @@ public class SumniPlugin extends CordovaPlugin {
                 }
                 return true;
             case "sendQuery":
-            //------------------------------Send Query-------------------------------------------//
+                //------------------------------Send Query-------------------------------------------//
                 if(args.length()<3){
                     sendErrorMessage(7,"This action needs at least 3 arguments to be used!",callbackContext);
                     return false;
@@ -309,30 +327,30 @@ public class SumniPlugin extends CordovaPlugin {
                 switch(queryOption){
                     case "QUERY_STRING":
                         mDSKernel.sendQuery(queryPackageName, queryData,new ISendCallback() {
-                            @Override
-                            public void onSendSuccess(long taskId) {
+                                    @Override
+                                    public void onSendSuccess(long taskId) {
 
-                            }
+                                    }
 
-                            @Override
-                            public void onSendFail(int errorId, String errorInfo) {
-                                sendErrorMessage(errorId,errorInfo,callbackContext);
-                            }
+                                    @Override
+                                    public void onSendFail(int errorId, String errorInfo) {
+                                        sendErrorMessage(errorId,errorInfo,callbackContext);
+                                    }
 
-                            @Override
-                            public void onSendProcess(long totle, long sended) {
+                                    @Override
+                                    public void onSendProcess(long totle, long sended) {
 
-                            }
-                        }                        
-                        ,new QueryCallback() {
-                            @Override
-                            public void onReceiveData(DSData data) {
-                                JSONObject result = dsDataToJson(data);
-                                PluginResult prquery = new PluginResult(PluginResult.Status.OK,result);
-                                prquery.setKeepCallback(false);
-                                callbackContext.sendPluginResult(prquery);
-                            }
-                        });
+                                    }
+                                }
+                                ,new QueryCallback() {
+                                    @Override
+                                    public void onReceiveData(DSData data) {
+                                        JSONObject result = dsDataToJson(data);
+                                        PluginResult prquery = new PluginResult(PluginResult.Status.OK,result);
+                                        prquery.setKeepCallback(false);
+                                        callbackContext.sendPluginResult(prquery);
+                                    }
+                                });
                         break;
                     case "QUERY_DATAPACK":
                         if(args.length()<6){
@@ -347,10 +365,10 @@ public class SumniPlugin extends CordovaPlugin {
                     default :
                         sendErrorMessage(5,"Query Option could not be identified/ does not exist!",callbackContext);
                         return false;
-                    }
+                }
                 return true;
             case "checkFileExists":
-            //------------------------------Check File Exits-------------------------------------------//
+                //------------------------------Check File Exits-------------------------------------------//
                 if(args.length()<2){
                     sendErrorMessage(7,"This action needs 2 arguments to be used!",callbackContext);
                     return false;
@@ -360,35 +378,35 @@ public class SumniPlugin extends CordovaPlugin {
                 sendQuery("CHECK_FILE",CheckExitspackageName,"def",true,CheckExitsfileId,callbackContext);
                 return true;
             case "deleteFileExists":
-            //------------------------------Delete File Exits-------------------------------------------//
+                //------------------------------Delete File Exits-------------------------------------------//
                 if(args.length()<1){
                     sendErrorMessage(7,"This action needs 1 argument to be used!",callbackContext);
                     return false;
                 }
                 long DeleteExitsTaskId = args.optLong(0);
                 mDSKernel.deleteFileExist(DeleteExitsTaskId, new ICheckFileCallback() {
-                        @Override
-                        public void onCheckFail() {
-                            sendErrorMessage(8,"There was an issue deleting this file! Id:"+DeleteExitsTaskId,callbackContext);
-                        }
+                    @Override
+                    public void onCheckFail() {
+                        sendErrorMessage(8,"There was an issue deleting this file! Id:"+DeleteExitsTaskId,callbackContext);
+                    }
 
-                        @Override
-                        public void onResult(boolean exist) {
-                            PluginResult prdelete = new PluginResult(PluginResult.Status.OK);
-                            prdelete.setKeepCallback(false);
-                            callbackContext.sendPluginResult(prdelete);
-                        }
-                    });
+                    @Override
+                    public void onResult(boolean exist) {
+                        PluginResult prdelete = new PluginResult(PluginResult.Status.OK);
+                        prdelete.setKeepCallback(false);
+                        callbackContext.sendPluginResult(prdelete);
+                    }
+                });
                 return true;
             case "checkConnection":
-            //------------------------------Check Connection-------------------------------------------//
+                //------------------------------Check Connection-------------------------------------------//
                 pr = new PluginResult(PluginResult.Status.OK,mDSKernel.isConnected());
                 mDSKernel.checkConnection();
                 pr.setKeepCallback(false);
                 callbackContext.sendPluginResult(pr);
                 return true;
             case "sendData":
-            //------------------------------Send Data-------------------------------------------//
+                //------------------------------Send Data-------------------------------------------//
                 if(args.length()<3){
                     sendErrorMessage(7,"This action needs at least 3 arguments to be used!",callbackContext);
                     return false;
@@ -408,7 +426,7 @@ public class SumniPlugin extends CordovaPlugin {
                     @Override
                     public void onSendFail(int errorId, String errorInfo) {
                         sendErrorMessage(errorId,errorInfo,callbackContext);
-                        }
+                    }
 
                     @Override
                     public void onSendProcess(long total, long sent) {
@@ -467,13 +485,13 @@ public class SumniPlugin extends CordovaPlugin {
                 mDSKernel.sendData(dataPacket);    //Call SendData to send text
                 return true;
             case "getDSDPackageName":
-            //------------------------------Get Package Name-------------------------------------------//
+                //------------------------------Get Package Name-------------------------------------------//
                 pr = new PluginResult(PluginResult.Status.OK,DSKernel.getDSDPackageName());
                 pr.setKeepCallback(false);
                 callbackContext.sendPluginResult(pr);
                 return true;
             case "createJson":
-            //------------------------------Create Json-------------------------------------------//
+                //------------------------------Create Json-------------------------------------------//
                 if(args.length()<2){
                     sendErrorMessage(7,"This action needs 2 arguments to be used!",callbackContext);
                     return false;
@@ -485,7 +503,7 @@ public class SumniPlugin extends CordovaPlugin {
                 pr.setKeepCallback(false);
                 callbackContext.sendPluginResult(pr);
                 return true;
-                
+
             default:
                 return false;
         }
@@ -684,9 +702,9 @@ public class SumniPlugin extends CordovaPlugin {
                 pr.setKeepCallback(true);
                 mCallback.sendPluginResult(pr);
             }catch (JSONException e){
-            sendErrorMessage(11,"JSONException:"+e.getLocalizedMessage(),mCallback);
-        }
-            
+                sendErrorMessage(11,"JSONException:"+e.getLocalizedMessage(),mCallback);
+            }
+
         }
     };
 
@@ -748,7 +766,7 @@ public class SumniPlugin extends CordovaPlugin {
         }
     };
 
-    
+
 
     private void initSdk() {
         mDSKernel = DSKernel.newInstance();
@@ -759,77 +777,77 @@ public class SumniPlugin extends CordovaPlugin {
 
     private void sendFile(String packagename,String message,String filePath,final CallbackContext callback){
         mDSKernel.sendFile(packagename, message, filePath, new ISendCallback() {
-                    @Override
-                    public void onSendSuccess(long taskId) {
-                        PluginResult pr = new PluginResult(PluginResult.Status.OK,taskId);
-                        pr.setKeepCallback(false);
-                        callback.sendPluginResult(pr);
-                    }
+            @Override
+            public void onSendSuccess(long taskId) {
+                PluginResult pr = new PluginResult(PluginResult.Status.OK,taskId);
+                pr.setKeepCallback(false);
+                callback.sendPluginResult(pr);
+            }
 
-                    @Override
-                    public void onSendFail(int errorId, String errorInfo) {
-                        sendErrorMessage(errorId,errorInfo,callback);
-                    }
+            @Override
+            public void onSendFail(int errorId, String errorInfo) {
+                sendErrorMessage(errorId,errorInfo,callback);
+            }
 
-                    @Override
-                    public void onSendProcess(long total, long sent) {
-                        //noresponse
-                    }
-                });
+            @Override
+            public void onSendProcess(long total, long sent) {
+                //noresponse
+            }
+        });
     }
     private void sendFiles(String packagename,String message,JSONArray filePaths,final CallbackContext callback){
         List<String> files = new ArrayList<>();
-        for (int i=0;i<filePaths.length();i++){ 
+        for (int i=0;i<filePaths.length();i++){
             files.add(filePaths.optString(i));
         }
         mDSKernel.sendFiles(packagename, message, files, new ISendFilesCallback() {
-                    @Override
-                    public void onAllSendSuccess(long fileId) {
-                        PluginResult pr = new PluginResult(PluginResult.Status.OK,fileId);
-                        pr.setKeepCallback(false);
-                        callback.sendPluginResult(pr);
-                    }
-                    @Override
-                    public void onSendSuccess(String path, long taskId) {
-                        
-                    }
+            @Override
+            public void onAllSendSuccess(long fileId) {
+                PluginResult pr = new PluginResult(PluginResult.Status.OK,fileId);
+                pr.setKeepCallback(false);
+                callback.sendPluginResult(pr);
+            }
+            @Override
+            public void onSendSuccess(String path, long taskId) {
 
-                    @Override
-                    public void onSendFaile(int errorId, String errorInfo) {
-                        sendErrorMessage(errorId,errorInfo,callback);
-                    }
+            }
 
-                    @Override
-                    public void onSendFileFaile(String path, int errorId, String errorInfo) {
-                        sendErrorMessage(errorId,errorInfo,callback);
-                    }
+            @Override
+            public void onSendFaile(int errorId, String errorInfo) {
+                sendErrorMessage(errorId,errorInfo,callback);
+            }
 
-                    @Override
-                    public void onSendProcess(String path,long total, long sent) {
-                        //noresponse
-                    }
-                });
+            @Override
+            public void onSendFileFaile(String path, int errorId, String errorInfo) {
+                sendErrorMessage(errorId,errorInfo,callback);
+            }
+
+            @Override
+            public void onSendProcess(String path,long total, long sent) {
+                //noresponse
+            }
+        });
     }
 
     private void sendCMD(String packname,String message,long id,final CallbackContext callback){
-         mDSKernel.sendCMD(packname, message, id,  new ISendCallback() {
-                @Override
-                public void onSendSuccess(long taskId) {
-                    PluginResult pr = new PluginResult(PluginResult.Status.OK,taskId);
-                    pr.setKeepCallback(false);
-                    callback.sendPluginResult(pr);
-                }
+        mDSKernel.sendCMD(packname, message, id,  new ISendCallback() {
+            @Override
+            public void onSendSuccess(long taskId) {
+                PluginResult pr = new PluginResult(PluginResult.Status.OK,taskId);
+                pr.setKeepCallback(false);
+                callback.sendPluginResult(pr);
+            }
 
-                @Override
-                public void onSendFail(int errorId, String errorInfo) {
-                    sendErrorMessage(errorId,errorInfo,callback);
-                }
+            @Override
+            public void onSendFail(int errorId, String errorInfo) {
+                sendErrorMessage(errorId,errorInfo,callback);
+            }
 
-                @Override
-                public void onSendProcess(long totle, long sended) {
+            @Override
+            public void onSendProcess(long totle, long sended) {
 
-                }
-            });
+            }
+        });
     }
 
     private void sendQuery(String type,String packageName,String data,Boolean isReport,long fileId,final CallbackContext callback){
@@ -839,22 +857,22 @@ public class SumniPlugin extends CordovaPlugin {
             return;
         }
         DataPacket packet = new DataPacket.Builder(dataType).data(data).recPackName(packageName)
-            .addCallback(new ISendCallback() {
-                @Override
-                public void onSendSuccess(long taskId) {
+                .addCallback(new ISendCallback() {
+                    @Override
+                    public void onSendSuccess(long taskId) {
 
-                }
+                    }
 
-                @Override
-                public void onSendFail(int errorId, String errorInfo) {
-                    sendErrorMessage(errorId,errorInfo,callback);
-                }
+                    @Override
+                    public void onSendFail(int errorId, String errorInfo) {
+                        sendErrorMessage(errorId,errorInfo,callback);
+                    }
 
-                @Override
-                public void onSendProcess(long totle, long sended) {
+                    @Override
+                    public void onSendProcess(long totle, long sended) {
 
-                }
-            }).isReport(isReport).build();
+                    }
+                }).isReport(isReport).build();
         if(fileId != -1){
             packet.getData().fileId = fileId;
         }

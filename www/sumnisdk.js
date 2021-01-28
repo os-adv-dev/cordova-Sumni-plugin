@@ -46,3 +46,9 @@ exports.presentVideo = function(path,success, error) {
 exports.presentWebview = function(url,success, error) {
     exec(success, error, "SumniPlugin", "presentWebView", [url]);
 };
+exports.setWebviewData = function(data,success, error) {
+    exec(success, error, "SumniPlugin", "presentWebView", [data]);
+};
+exports.getWebviewData = function(,success, error) {
+    exec(success, error, "SumniPlugin", "presentWebView", []);
+};
