@@ -43,3 +43,6 @@ exports.presentText = function(jsonObj,state,success, error) {
 exports.presentVideo = function(path,success, error) {
     exec(success, error, "SumniPlugin", "presentVideo", [path]);
 };
+exports.presentWebview = function(url,success, error) {
+    exec(success, error, "SumniPlugin", "presentWebView", [url]);
+};

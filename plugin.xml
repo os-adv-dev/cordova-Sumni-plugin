@@ -47,9 +47,11 @@
         <source-file src="src/utils/DataModel.java" target-dir="src/com/outsystems/sumnisdk/utils" />
         <source-file src="src/utils/UPacketFactory.java" target-dir="src/com/outsystems/sumnisdk/utils" />
         <source-file src="src/utils/ScreenManager.java" target-dir="src/com/outsystems/sumnisdk/utils" />
+        <source-file src="src/utils/WebviewReadWrite.java" target-dir="src/com/outsystems/sumnisdk/utils" />
 
         <source-file src="src/presentation/BasePresentation.java" target-dir="src/com/outsystems/sumnisdk" />
         <source-file src="src/presentation/BasePresentationHelper.java" target-dir="src/com/outsystems/sumnisdk" />
+        <source-file src="src/presentation/present/WebviewDisplay.java" target-dir="src/com/outsystems/sumnisdk/present" />
         <source-file src="src/presentation/present/TextDisplay.java" target-dir="src/com/outsystems/sumnisdk/present" />
         <source-file src="src/presentation/present/VideoDisplay.java" target-dir="src/com/outsystems/sumnisdk/present" />
 
