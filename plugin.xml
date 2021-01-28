@@ -66,6 +66,7 @@
         <source-file src="src/res/layout/vice_text_layout.xml" target-dir="res/layout" />
         <source-file src="src/res/layout/vice_text_min_layout.xml" target-dir="res/layout" />
         <source-file src="src/res/layout/vice_video_layout.xml" target-dir="res/layout" />
+        <source-file src="src/res/layout/vice_webview_layout.xml" target-dir="res/layout" />
         
         
         <source-file src="src/res/drawables/present_pay_iv1.png" target-dir="res/drawable" />
