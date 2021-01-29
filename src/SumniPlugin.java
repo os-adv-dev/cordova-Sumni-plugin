@@ -9,8 +9,6 @@ import org.apache.cordova.PluginResult;
 import android.util.Log;
 import android.view.Display;
 
-import com.outsystems.sumnisdk.present.TextDisplay;
-import com.outsystems.sumnisdk.present.VideoDisplay;
 import com.outsystems.sumnisdk.present.WebviewDisplay;
 import com.outsystems.sumnisdk.utils.DataModel;
 import com.outsystems.sumnisdk.utils.ScreenManager;
