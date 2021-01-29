@@ -48,129 +48,13 @@
         <source-file src="src/utils/UPacketFactory.java" target-dir="src/com/outsystems/sumnisdk/utils" />
         <source-file src="src/utils/ScreenManager.java" target-dir="src/com/outsystems/sumnisdk/utils" />
         <source-file src="src/utils/WebviewReadWrite.java" target-dir="src/com/outsystems/sumnisdk/utils" />
+        <source-file src="src/utils/SharePreferenceUtil.java" target-dir="src/com/outsystems/sumnisdk/utils" />
 
         <source-file src="src/presentation/BasePresentation.java" target-dir="src/com/outsystems/sumnisdk" />
         <source-file src="src/presentation/BasePresentationHelper.java" target-dir="src/com/outsystems/sumnisdk" />
         <source-file src="src/presentation/present/WebviewDisplay.java" target-dir="src/com/outsystems/sumnisdk/present" />
-        <source-file src="src/presentation/present/TextDisplay.java" target-dir="src/com/outsystems/sumnisdk/present" />
-        <source-file src="src/presentation/present/VideoDisplay.java" target-dir="src/com/outsystems/sumnisdk/present" />
 
-        <source-file src="src/presentation/player/IMDisplay.java" target-dir="src/com/outsystems/sumnisdk/player" />
-        <source-file src="src/presentation/player/IMPlayer.java" target-dir="src/com/outsystems/sumnisdk/player" />
-        <source-file src="src/presentation/player/IMPlayListener.java" target-dir="src/com/outsystems/sumnisdk/player" />
-        <source-file src="src/presentation/player/MinimalDisplay.java" target-dir="src/com/outsystems/sumnisdk/player" />
-        <source-file src="src/presentation/player/MPlayer.java" target-dir="src/com/outsystems/sumnisdk/player" />
-        <source-file src="src/presentation/player/MPlayerException.java" target-dir="src/com/outsystems/sumnisdk/player" />
-
-
-        <source-file src="src/res/layout/vice_text_layout.xml" target-dir="res/layout" />
-        <source-file src="src/res/layout/vice_text_min_layout.xml" target-dir="res/layout" />
-        <source-file src="src/res/layout/vice_video_layout.xml" target-dir="res/layout" />
+        <source-file src="src/res/layout/vice_webview_layout.xml" target-dir="res/layout" />
         
-        
-        <source-file src="src/res/drawables/present_pay_iv1.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/present_pay_iv2.xml" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/present_pay_iv3.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/present_pay_iv4.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/present_bg_text1.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/present_bg_text2.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/present_bg_text3.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/present_bg_text4.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/present_success.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/present_pay_mode_bg.xml" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/present_pay_mode_check.xml" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/present_pay_mode_normal.xml" target-dir="res/drawable" />
-
-
-        <source-file src="src/res/drawables/Frame/frame001.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame002.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame003.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame004.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame005.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame006.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame007.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame008.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame009.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame010.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame011.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame012.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame013.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame014.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame015.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame016.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame017.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame018.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame019.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame020.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame021.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame022.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame023.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame024.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame025.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame026.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame027.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame028.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame029.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame030.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame031.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame032.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame033.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame034.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame035.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame036.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame037.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame038.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame039.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame040.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame041.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame042.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame043.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame044.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame045.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame046.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame047.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame048.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame049.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame050.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame051.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame052.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame053.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame054.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame055.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame056.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame057.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame058.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame059.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame060.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame061.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame062.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame063.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame064.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame065.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame066.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame067.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame068.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame069.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame070.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame071.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame072.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame073.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame074.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame075.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame076.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame077.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame078.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame079.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame080.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame081.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame082.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame083.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame084.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame085.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame086.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame087.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame088.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame089.png" target-dir="res/drawable" />
-        <source-file src="src/res/drawables/Frame/frame090.png" target-dir="res/drawable" />
     </platform>
 </plugin>

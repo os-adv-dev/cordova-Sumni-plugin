@@ -37,12 +37,13 @@ exports.createJson = function(message, model,success, error) {
     exec(success, error, "SumniPlugin", "createJson", [message, model]);
 };
 
-exports.presentText = function(jsonObj,state,success, error) {
-    exec(success, error, "SumniPlugin", "presentText", [jsonObj,state]);
-};
-exports.presentVideo = function(path,success, error) {
-    exec(success, error, "SumniPlugin", "presentVideo", [path]);
-};
+
 exports.presentWebview = function(url,success, error) {
     exec(success, error, "SumniPlugin", "presentWebView", [url]);
+};
+exports.setWebviewData = function(data,success, error) {
+    exec(success, error, "SumniPlugin", "setWebviewData", [data]);
+};
+exports.getWebviewData = function(success, error) {
+    exec(success, error, "SumniPlugin", "getWebviewData", []);
 };

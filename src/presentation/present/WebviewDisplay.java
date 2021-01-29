@@ -61,18 +61,16 @@ public class WebviewDisplay extends BasePresentation {
 
         root = findViewById(R.id.root);
         mWebview = findViewById(R.id.wv_display);
-        mWebview.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ONLY);
+        mWebview.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
         mWebview.getSettings().setAllowFileAccess(true);
         mWebview.getSettings().setJavaScriptEnabled(true);
+        mWebview.getSettings().setDatabaseEnabled(true);
+        mWebview.getSettings().setAppCacheEnabled(true);
+        mWebview.getSettings().setAppCachePath(context.getCacheDir().getAbsolutePath());
+        mWebview.getSettings().setDomStorageEnabled(true);
+
         mWebview.addJavascriptInterface(new WebviewReadWrite(context), "injectedObject");
-
-        mWebview.setDownloadListener(new DownloadListener() {
-            @Override
-            public void onDownloadStart(String s, String s1, String s2, String s3, long l) {
-
-            }
-        });
-
+        
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             root.setClipToOutline(true);
             root.setOutlineProvider(new ViewOutlineProvider() {
