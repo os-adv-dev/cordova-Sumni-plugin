@@ -39,12 +39,8 @@ module.exports = function (context) {
     id = id.replace(regexId,"/")
 
     var projectRoot = context.opts.cordova.project ? context.opts.cordova.project.root : context.opts.projectRoot;
-    var textFilePath = path.join(projectRoot,"platforms","android","app","src","main","java","com","outsystems","sumnisdk","present","TextDisplay.java");
-    var videoFilePath = path.join(projectRoot,"platforms","android","app","src","main","java","com","outsystems","sumnisdk","present","VideoDisplay.java");
     var webviewPath = path.join(projectRoot,"platforms","android","app","src","main","java","com","outsystems","sumnisdk","present","WebviewDisplay.java");
     replacePackageInPath(webviewPath);
-    replacePackageInPath(textFilePath);
-    replacePackageInPath(videoFilePath);
     deferral.resolve();
 
     return deferral.promise;

@@ -6,7 +6,6 @@ import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CordovaWebView;
 import org.apache.cordova.PluginResult;
 
-import android.hardware.display.DisplayManager;
 import android.util.Log;
 import android.view.Display;
 
@@ -26,7 +25,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import sunmi.ds.DSKernel;
-import sunmi.ds.SF;
 import sunmi.ds.callback.ICheckFileCallback;
 import sunmi.ds.callback.IConnectionCallback;
 import sunmi.ds.callback.IReceiveCallback;
@@ -44,78 +42,18 @@ public class SumniPlugin extends CordovaPlugin {
     private final String TAG = this.getServiceName();
     private DSKernel mDSKernel = null;
     private CallbackContext mCallback;
-    private DisplayManager displayManager = null;
-    private Display[] presentationDisplays = null;
     private ScreenManager screenManager = ScreenManager.getInstance();
-    private TextDisplay textDisplay;
     private WebviewDisplay webviewDisplay;
 
     @Override
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
         super.initialize(cordova, webView);
         screenManager.init(cordova.getActivity());
-        Display[] displays = screenManager.getDisplays();
-        Log.e(TAG, "屏幕数量" + displays.length);
-        for (int i = 0; i < displays.length; i++) {
-            Log.e(TAG, "屏幕" + displays[i]);
-        }
-        Display display = screenManager.getPresentationDisplays();
-        if (display != null) {//&& !isVertical
-            textDisplay = new TextDisplay(cordova.getActivity(), display);
-        }
     }
 
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext){
         PluginResult pr;
         switch (action) {
-            case "presentText":
-                if(args.length()<2){
-                    sendErrorMessage(7,"This action needs 2 argument to be used!",callbackContext);
-                    return false;
-                }
-                try {
-                    JSONObject jsonObj = new JSONObject(args.getString(0));
-                    int state = args.getInt(1);
-                    if(textDisplay == null){
-                        Display[] displays = screenManager.getDisplays();
-                        Log.e(TAG, "屏幕数量" + displays.length);
-                        for (int i = 0; i < displays.length; i++) {
-                            Log.e(TAG, "屏幕" + displays[i]);
-                        }
-                        Display display = screenManager.getPresentationDisplays();
-                        if (display != null) {//&& !isVertical
-                            textDisplay = new TextDisplay(cordova.getActivity(), display);
-                        }
-                    }
-                    textDisplay.show();
-                    textDisplay.update(jsonObj, state);
-                }catch(JSONException e){
-                    sendErrorMessage(11,"JSONException:"+e.getLocalizedMessage(),callbackContext);
-                    return false;
-                }
-                return true;
-            case "presentVideo":
-                if(args.length()<1){
-                    sendErrorMessage(7,"This action needs 1 argument to be used!",callbackContext);
-                    return false;
-                }
-                try {
-                    String path = args.getString(0);
-                    Display[] displays = screenManager.getDisplays();
-                    Log.e(TAG, "屏幕数量" + displays.length);
-                    for (int i = 0; i < displays.length; i++) {
-                        Log.e(TAG, "屏幕" + displays[i]);
-                    }
-                    Display display = screenManager.getPresentationDisplays();
-                    if (display != null) {//&& !isVertical
-                        VideoDisplay videoDisplay = new VideoDisplay(cordova.getActivity(), display,path);
-                        videoDisplay.onSelect(true);
-                    }
-                }catch(JSONException e){
-                    sendErrorMessage(11,"JSONException:"+e.getLocalizedMessage(),callbackContext);
-                    return false;
-                }
-                return true;
             case "presentWebView":
                 if(args.length()<1){
                     sendErrorMessage(7,"This action needs 1 argument to be used!",callbackContext);
@@ -124,18 +62,15 @@ public class SumniPlugin extends CordovaPlugin {
                 try {
                     String url = args.getString(0);
                     Display[] displays = screenManager.getDisplays();
-                    Log.e(TAG, "屏幕数量" + displays.length);
+                    Log.e(TAG, "Display's available" + displays.length);
                     for (int i = 0; i < displays.length; i++) {
-                        Log.e(TAG, "屏幕" + displays[i]);
+                        Log.e(TAG, "Display information" + displays[i]);
                     }
                     Display display = screenManager.getPresentationDisplays();
                     if (display != null) {//&& !isVertical
-                        cordova.getActivity().runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                webviewDisplay = new WebviewDisplay(cordova.getActivity(), display,url,callbackContext);
-                                webviewDisplay.show();
-                            }
+                        cordova.getActivity().runOnUiThread(() -> {
+                            webviewDisplay = new WebviewDisplay(cordova.getActivity(), display,url,callbackContext);
+                            webviewDisplay.show();
                         });
 
                     }
