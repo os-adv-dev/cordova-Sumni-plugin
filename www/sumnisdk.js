@@ -47,8 +47,8 @@ exports.presentWebview = function(url,success, error) {
     exec(success, error, "SumniPlugin", "presentWebView", [url]);
 };
 exports.setWebviewData = function(data,success, error) {
-    exec(success, error, "SumniPlugin", "presentWebView", [data]);
+    exec(success, error, "SumniPlugin", "setWebviewData", [data]);
 };
-exports.getWebviewData = function(,success, error) {
-    exec(success, error, "SumniPlugin", "presentWebView", []);
+exports.getWebviewData = function(success, error) {
+    exec(success, error, "SumniPlugin", "getWebviewData", []);
 };
